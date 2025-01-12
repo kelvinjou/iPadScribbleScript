@@ -28,12 +28,12 @@ class EC2ViewModel: ObservableObject {
         let address = "https://server.scribblescript.tech/process"
         
         // STUB
-        DispatchQueue.main.async {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                self.codeResult = "#include <iostream> \n using namespace std;\n int main() { \n cout << \"Hello World\" << endl;\n return 0\n }\n"
-            }
-            return;
-        }
+//        DispatchQueue.main.async {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//                self.codeResult = "#include <iostream> \n using namespace std;\n int main() { \n cout << \"Hello World\" << endl;\n return 0\n }\n"
+//            }
+//            return;
+//        }
 
         
         guard let url = URL(string: address) else {
@@ -63,7 +63,9 @@ class EC2ViewModel: ObservableObject {
 
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        isLoading = true
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 self.isLoading = false
