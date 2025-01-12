@@ -15,6 +15,8 @@
 		F4D0FB792D333BBB00220C36 /* b64+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0FB782D333BBB00220C36 /* b64+ext.swift */; };
 		F4D0FB7B2D333D4E00220C36 /* EC2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0FB7A2D333D4E00220C36 /* EC2Request.swift */; };
 		F4D0FB7E2D33617800220C36 /* CodeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0FB7D2D33617800220C36 /* CodeBlockView.swift */; };
+		F4D0FB802D33AA2800220C36 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4D0FB7F2D33AA2800220C36 /* Keys.plist */; };
+		F4D0FB832D33AB6200220C36 /* SwiftAnthropic in Frameworks */ = {isa = PBXBuildFile; productRef = F4D0FB822D33AB6200220C36 /* SwiftAnthropic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,7 @@
 		F4D0FB7A2D333D4E00220C36 /* EC2Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EC2Request.swift; sourceTree = "<group>"; };
 		F4D0FB7C2D334B7E00220C36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F4D0FB7D2D33617800220C36 /* CodeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlockView.swift; sourceTree = "<group>"; };
+		F4D0FB7F2D33AA2800220C36 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D0FB832D33AB6200220C36 /* SwiftAnthropic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +48,7 @@
 		F4D0FB5B2D332D4300220C36 = {
 			isa = PBXGroup;
 			children = (
+				F4D0FB7F2D33AA2800220C36 /* Keys.plist */,
 				F4D0FB662D332D4300220C36 /* iPadScribbleScript */,
 				F4D0FB652D332D4300220C36 /* Products */,
 			);
@@ -97,6 +102,9 @@
 			dependencies = (
 			);
 			name = iPadScribbleScript;
+			packageProductDependencies = (
+				F4D0FB822D33AB6200220C36 /* SwiftAnthropic */,
+			);
 			productName = iPadScribbleScript;
 			productReference = F4D0FB642D332D4300220C36 /* iPadScribbleScript.app */;
 			productType = "com.apple.product-type.application";
@@ -125,6 +133,9 @@
 				Base,
 			);
 			mainGroup = F4D0FB5B2D332D4300220C36;
+			packageReferences = (
+				F4D0FB812D33AB6200220C36 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */,
+			);
 			productRefGroup = F4D0FB652D332D4300220C36 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D0FB802D33AA2800220C36 /* Keys.plist in Resources */,
 				F4D0FB6F2D332D4600220C36 /* Preview Assets.xcassets in Resources */,
 				F4D0FB6C2D332D4600220C36 /* Assets.xcassets in Resources */,
 			);
@@ -364,6 +376,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F4D0FB812D33AB6200220C36 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jamesrochabrun/SwiftAnthropic";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F4D0FB822D33AB6200220C36 /* SwiftAnthropic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4D0FB812D33AB6200220C36 /* XCRemoteSwiftPackageReference "SwiftAnthropic" */;
+			productName = SwiftAnthropic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F4D0FB5C2D332D4300220C36 /* Project object */;
 }

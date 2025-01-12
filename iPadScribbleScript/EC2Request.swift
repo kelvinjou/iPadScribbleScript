@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import SwiftAnthropic
 
-struct APIResponse: Codable {
+struct APIResponse: Decodable {
     let res: String
-    
+
+    enum CodingKeys: String, CodingKey {
+        case res = "result" // Map "result" key in JSON to "res" property
+    }
 }
 
 class EC2ViewModel: ObservableObject {
@@ -25,7 +29,9 @@ class EC2ViewModel: ObservableObject {
         
         // STUB
         DispatchQueue.main.async {
-            self.codeResult = "#include <iostream> \nint main() { \n cout << \"Hello World\" << endl;\n return 0\n }\n"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.codeResult = "#include <iostream> \n using namespace std;\n int main() { \n cout << \"Hello World\" << endl;\n return 0\n }\n"
+            }
             return;
         }
 
@@ -80,17 +86,19 @@ class EC2ViewModel: ObservableObject {
             }
 
             if let data = data {
+                
                 do {
-                    // Decode the JSON data using Codable
-                    let response = try JSONDecoder().decode(APIResponse.self, from: data)
-                    
-                    print("78", response.res)
-                    // Update the @Published variable
-                    DispatchQueue.main.async {
-                        self.codeResult = response.res
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print("Raw JSON Response: \(jsonString)")
                     }
                     
-                    print("Code Result: \(self.codeResult ?? "No result")")
+                    let response = try JSONDecoder().decode(APIResponse.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        self.codeResult = response.res // Extract the result
+                    }
+                    print("Decoded Result: \(response.res)")
+                    
                 } catch {
                     DispatchQueue.main.async {
                         self.processingImgError = "Failed to decode JSON: \(error.localizedDescription)"
@@ -142,12 +150,12 @@ class EC2ViewModel: ObservableObject {
             
             if let data = data {
                 do {
-                    let response = try JSONDecoder().decode(APIResponse.self, from: data)
-                    print("145", response.res)
+//                    let response = try JSONDecoder().decode(APIResponse.self, from: data)
+//                    print("145", response.res)
                     
-                    DispatchQueue.main.async {
-                        self.compileResult = response.res
-                    }
+//                    DispatchQueue.main.async {
+//                        self.compileResult = response.res
+//                    }
                     
                     print("compilation response: \(self.compileResult ?? "No compilation res")")
                 } catch {
@@ -158,6 +166,37 @@ class EC2ViewModel: ObservableObject {
                 }
             }
         }.resume()
+    }
+    
+    func callAnthropic() async {
+//        if let apiKey = Bundle.main.object(forInfoDictionaryKey: "ANTHROPIC_KEY") as? String {
+//            print("API Key: \(apiKey)")
+//        }
+        if let path = Bundle.main.path(forResource: "Keys", ofType: "plist"),
+           let keys = NSDictionary(contentsOfFile: path),
+           let apiKey = keys["ANTHROPIC_KEY"] as? String {
+            
+            let service = AnthropicServiceFactory.service(apiKey: apiKey, betaHeaders: [])
+            let claudeModel: Model = .claude35Sonnet
+            let maxTokensToSample = 1024
+            let messageParameter = MessageParameter.Message(role: MessageParameter.Message.Role(rawValue: "user")!, content: MessageParameter.Message.Content.text("Hello Claude"))
+            let parameters = MessageParameter(model: claudeModel, messages: [messageParameter], maxTokens: maxTokensToSample)
+            
+            do {
+                let messageRequest = try await service.streamMessage(parameters)
+                var messageTextResponse = ""
+                for try await result in messageRequest {
+                    // Safely unwrap delta?.text and accumulate it
+                    if let content = result.delta?.text {
+                        messageTextResponse += content
+                        print("chunked output: \(messageTextResponse)")
+                    }
+                }
+                print("The final output is \(messageTextResponse)")
+            } catch {
+                print("Cannot create message")
+            }
+        }
     }
 }
 
