@@ -14,6 +14,7 @@
 		F4D0FB762D332EDA00220C36 /* ScribbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0FB752D332ED900220C36 /* ScribbleView.swift */; };
 		F4D0FB792D333BBB00220C36 /* b64+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0FB782D333BBB00220C36 /* b64+ext.swift */; };
 		F4D0FB7B2D333D4E00220C36 /* EC2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0FB7A2D333D4E00220C36 /* EC2Request.swift */; };
+		F4D0FB7E2D33617800220C36 /* CodeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0FB7D2D33617800220C36 /* CodeBlockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F4D0FB782D333BBB00220C36 /* b64+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "b64+ext.swift"; sourceTree = "<group>"; };
 		F4D0FB7A2D333D4E00220C36 /* EC2Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EC2Request.swift; sourceTree = "<group>"; };
 		F4D0FB7C2D334B7E00220C36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F4D0FB7D2D33617800220C36 /* CodeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				F4D0FB692D332D4300220C36 /* ContentView.swift */,
 				F4D0FB752D332ED900220C36 /* ScribbleView.swift */,
 				F4D0FB7A2D333D4E00220C36 /* EC2Request.swift */,
+				F4D0FB7D2D33617800220C36 /* CodeBlockView.swift */,
 				F4D0FB782D333BBB00220C36 /* b64+ext.swift */,
 				F4D0FB6B2D332D4600220C36 /* Assets.xcassets */,
 				F4D0FB6D2D332D4600220C36 /* Preview Content */,
@@ -151,6 +154,7 @@
 				F4D0FB792D333BBB00220C36 /* b64+ext.swift in Sources */,
 				F4D0FB6A2D332D4300220C36 /* ContentView.swift in Sources */,
 				F4D0FB682D332D4300220C36 /* iPadScribbleScriptApp.swift in Sources */,
+				F4D0FB7E2D33617800220C36 /* CodeBlockView.swift in Sources */,
 				F4D0FB762D332EDA00220C36 /* ScribbleView.swift in Sources */,
 				F4D0FB7B2D333D4E00220C36 /* EC2Request.swift in Sources */,
 			);

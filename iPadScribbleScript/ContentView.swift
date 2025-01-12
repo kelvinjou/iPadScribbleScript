@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ScribbleView()
+//        CodeBlockView(code: "var str = \"hello world\"")
     }
 }
 
